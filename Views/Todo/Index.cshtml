@@ -1,4 +1,6 @@
 ﻿@model TodoViewModel
+@using Humanizer
+@using System.Globalization
 
 @{
     ViewData["Title"] = "Manage your todo list";
@@ -23,7 +25,7 @@
                     <input type="checkbox" class="done-checkbox" />
                 </td>
                 <td>@item.Title</td>
-                <td>@item.DueAt</td>
+                <td>@item.DueAt.Humanize(culture: new @CultureInfo("ru-Ru"))</td>
             </tr>
         }
     </table>

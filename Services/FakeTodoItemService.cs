@@ -18,7 +18,7 @@ namespace AspNetCoreTodo.Services
 
             var item2 = new TodoItem
             {
-                Title = "Build awasome apps",
+                Title = "Build awesome apps",
                 DueAt = DateTimeOffset.Now.AddDays(2)
             };
 
