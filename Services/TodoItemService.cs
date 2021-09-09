@@ -1,5 +1,6 @@
 ﻿using AspNetCoreTodo.Data;
 using AspNetCoreTodo.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,14 @@ namespace AspNetCoreTodo.Services
             _dbContext = dbContext;
         }
 
-        public async Task<TodoItem[]> GetIncompleteItemsAsync(ApplicationUser user)
+        public async Task<TodoItem[]> GetIncompleteItemsAsync(IdentityUser user)
         {
             return await _dbContext.Items
                 .Where(i => i.IsDone == false && i.UserId == user.Id)
                 .ToArrayAsync();
         }
 
-        public async Task<bool> TryMarkDoneAsync(Guid id, ApplicationUser user)
+        public async Task<bool> TryMarkDoneAsync(Guid id, IdentityUser user)
         {
             var item = await _dbContext.Items
                 .Where(i => i.Id == id && i.UserId == user.Id)
@@ -42,7 +43,7 @@ namespace AspNetCoreTodo.Services
             return saveResult == numberStateEntries;
         }
 
-        public async Task<bool> TryAddItemAsync(TodoItem newItem, ApplicationUser user)
+        public async Task<bool> TryAddItemAsync(TodoItem newItem, IdentityUser user)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
