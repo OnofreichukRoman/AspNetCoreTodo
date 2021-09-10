@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AspNetCoreTodo.Services;
+using AspNetCoreTodo.Models;
 
 namespace AspNetCoreTodo
 {
@@ -32,7 +33,9 @@ namespace AspNetCoreTodo
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc();
             services.AddScoped<ITodoItemService, TodoItemService>();
