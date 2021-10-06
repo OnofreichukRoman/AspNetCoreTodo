@@ -36,14 +36,6 @@ namespace AspNetCoreTodo.Services
                 return false;
             }
 
-            //For records (.Net5)
-            //var saveResult = await _dbContext.Database.ExecuteSqlInterpolatedAsync(
-            //$@"
-            //    UPDATE Items
-            //    SET IsDone = 1
-            //    WHERE Id = {id}
-            //");
-
             item.IsDone = true;
             var saveResult = await _dbContext.SaveChangesAsync();
             const int numberStateEntries = 1;
