@@ -45,7 +45,7 @@ namespace AspNetCoreTodo
                 return;
             }
 
-            testAdmin = new ApplicationUser
+            testAdmin = new IdentityUser
             {
                 UserName = testAdminEmail,
                 Email = testAdminEmail
