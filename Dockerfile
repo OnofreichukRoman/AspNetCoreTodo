@@ -13,8 +13,8 @@ RUN dotnet publish -c release -o /app --no-restore
 
 #Generate runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:3.1
-EXPOSE 80
-#ENV ASPNETCORE_URLS=http://+:5000
+EXPOSE 5000
+ENV ASPNETCORE_URLS=http://+:5000
 WORKDIR /app
 COPY --from=build /app ./
 
